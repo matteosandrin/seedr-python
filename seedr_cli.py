@@ -97,6 +97,12 @@ def delete_folder(item_id):
         print(" [+] SUCCESS!")
 
 if len(sys.argv) < 2:
+    print(" [!] usage:")
+    print("     seedr list")
+    print("     seedr list <folder_id>")
+    print("     seedr link <folder_id|file_id>")
+    print("     seedr add <magnet_link>")
+    print("     seedr rm  <magnet_link>")
     exit(1)
 
 command = sys.argv[1]
