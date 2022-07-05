@@ -5,6 +5,9 @@ import sys
 import os
 import configparser
 
+dir_path = os.path.dirname(os.path.abspath(__file__))
+config_path = os.path.join(dir_path, "config.ini")
+
 def get_token_flow():
     s = Seedr()
     result = s.get_device_code()
@@ -26,16 +29,16 @@ def get_token_flow():
 
 def store_token(token):
     config_text = "[DEFAULT]\nTOKEN={}\n".format(token)
-    f = open("config.ini", "w")
+    f = open(config_path, "w")
     f.write(config_text)
     f.close()
 
 config = configparser.ConfigParser()
 
-if (not os.path.exists("config.ini")):
+if (not os.path.exists(config_path)):
     get_token_flow()
 
-config.read("config.ini")
+config.read(config_path)
 TOKEN = config["DEFAULT"]["TOKEN"]
 seed = Seedr(TOKEN)
 
