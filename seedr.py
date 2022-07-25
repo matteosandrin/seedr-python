@@ -120,7 +120,9 @@ class Seedr:
         }
 
         response = self.session.post("https://www.seedr.cc/oauth_test/resource.php", data=data)
-        if response.status_code != 200 or (not response.json()["result"]):
+        if response.status_code != 200 or \
+           (not response.json()["result"]) or \
+           (type(response.json()["result"]) == str):
             return -1
 
         return response.json()
